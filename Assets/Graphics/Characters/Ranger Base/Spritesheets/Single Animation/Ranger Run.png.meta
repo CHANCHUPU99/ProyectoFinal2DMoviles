@@ -3,7 +3,7 @@ guid: 5c954607fc022884bbebd39aef0c3aa8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -63,13 +63,14 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -282,14 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ranger Run_5: -736714949
-      Ranger Run_2: 1456132071
-      Ranger Run_4: -1860304360
-      Ranger Run_1: 631935788
       Ranger Run_0: -267077346
-      Ranger Run_7: -1538484847
+      Ranger Run_1: 631935788
+      Ranger Run_2: 1456132071
       Ranger Run_3: -1243284925
+      Ranger Run_4: -1860304360
+      Ranger Run_5: -736714949
       Ranger Run_6: 778742641
+      Ranger Run_7: -1538484847
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
