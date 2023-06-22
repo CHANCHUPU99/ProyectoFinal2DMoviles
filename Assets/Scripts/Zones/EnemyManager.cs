@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
             Debug.Log("ya perdio");
             PlayerManager1.instance.changePlayerState(PlayerState.Dead);
             LevelManager.instance.playerisDead();
+            LevelTwoManager.instance.playerisDead();
         }
     }
 }
