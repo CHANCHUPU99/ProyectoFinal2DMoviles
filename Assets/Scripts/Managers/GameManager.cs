@@ -7,21 +7,20 @@ using UnityEngine.SceneManagement;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager s_instance;
     //public GameObject canvas;
     //public GameObject canvas2;
     [SerializeField] GameObject nextLevelI, youLoseI;
-    [SerializeField] GameObject mainMenuPanel, creditsPanel;
+    [SerializeField] GameObject creditsPanel;
     [SerializeField] GameObject playerSpawnPoint;
-    private string n_newLevelScene;
+    private string newLevelScene;
     GameState m_gameState;
-    public int levelIndex;
+    public string currentLevel;
 
-    void Awake()
-    {
-        if (FindObjectOfType<GameManager>() != null &&
+
+    void Awake() {
+        if ((FindObjectOfType<GameManager>() != null) &&
            FindObjectOfType<GameManager>().gameObject != gameObject) {
             Destroy(gameObject);
             return;
@@ -29,7 +28,7 @@ public class GameManager : MonoBehaviour
         s_instance = this;
         m_gameState = GameState.Playing;
         DontDestroyOnLoad(gameObject);
-        }
+    }
 
     public void changeGameState(GameState newGameState) {
         if (m_gameState == newGameState) {
@@ -46,13 +45,15 @@ public class GameManager : MonoBehaviour
                 loadMainMenu();
                 break;
             case GameState.LoadLevel:
-                StartCoroutine(loadNextLevel());
+                startLevel();
                 break;
             case GameState.Playing:
                 break;
+            case GameState.LevelComplete:
+                nextLevel();
+                break;
             case GameState.GameOver:
-                StartCoroutine(gameOvertrue());
-                //StartCoroutine(resetLevel());
+               gameOver();
                 break;
             case GameState.Win:
                 finalCredits();
@@ -61,57 +62,50 @@ public class GameManager : MonoBehaviour
                 throw new UnityException("null Game State");
         }
     }
+ 
 
     public void changeGameStateFromEditor(string newState) {
         changeGameState((GameState)System.Enum.Parse(typeof(GameState), newState));
     }
+
     public void startGame() {
         changeGameState(GameState.Playing);
     }
 
-    public IEnumerator gameOvertrue() {
-        yield return new WaitForSeconds(2f);
-        gameOver();
-    }
     public void gameOver() {
-        youLoseI.SetActive(true);
+        SceneManager.LoadScene("YouLoseScene");
     }
-    //public IEnumerator resetLevel() {
-    //    yield return new WaitForSeconds(6);
-    //    restartGame();
-    //}
+ 
     public void restartGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        setPlayerSpawn();      
+        SceneManager.LoadScene(currentLevel);
+        setPlayerSpawn();
     }
     public GameState getGameState() {
         return m_gameState;
     }
     public void newLevelName(string t_newLevel) {
-        n_newLevelScene = t_newLevel;
+        newLevelScene = t_newLevel;
+    }
+    public void setNewCurrentLevelName(string newCurrentL) {
+        currentLevel = newCurrentL;
     }
     public void loadMainMenu() {
         SceneManager.LoadScene("MainMenu");
     }
-    public IEnumerator loadNextLevel() {
-        levelIndex++;
-        nextLevelI.SetActive(true);
-        yield return new WaitForSeconds(5f);
-        nextLevel();
-    }
-   
     private void nextLevel() {
-        SceneManager.LoadScene(n_newLevelScene);
+        SceneManager.LoadScene(currentLevel);
         setPlayerSpawn();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    private void startLevel() {
+        SceneManager.LoadScene(newLevelScene);
+        setPlayerSpawn();
     }
     private void finalCredits() {
         creditsPanel.SetActive(true);
     }
-    private void setPlayerSpawn() {
-        PlayerManager1.instance.transform.position = playerSpawnPoint.transform.position;      
+    public void setPlayerSpawn() {
+        PlayerManager1.instance.transform.position = playerSpawnPoint.transform.position;
     }
-
     //lo que ya tenia 
     //public IEnumerator LoadImage()
     //{
@@ -130,7 +124,6 @@ public class GameManager : MonoBehaviour
     //    Debug.Log("Ganaste");
     //}
 
-  
 }
 
 public enum GameState {
@@ -139,6 +132,7 @@ public enum GameState {
     MainMenu,
     LoadLevel,
     Playing,
+    LevelComplete,
     GameOver,
     Win
 }

@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController1 : MonoBehaviour
-{
+public class PlayerController1 : MonoBehaviour {
     #region Public
     public static PlayerController1 instance;
     public LayerMask whatIsGround;
@@ -19,13 +18,11 @@ public class PlayerController1 : MonoBehaviour
     [SerializeField] Transform footPosition;
     #endregion
 
-    void Awake()
-    {
+    void Awake() {
         instance = this;
     }
 
-    void Start()
-    {
+    void Start() {
         rb2d = GetComponent<Rigidbody2D>();
         isFacingRight = true;
         isGrounded = false;
@@ -33,8 +30,8 @@ public class PlayerController1 : MonoBehaviour
 
     void FixedUpdate() {
 
-        isGrounded = Physics2D.OverlapCircle(footPosition.position, footRadious, whatIsGround)&&
-            rb2d.velocity.y <0.1;
+        isGrounded = Physics2D.OverlapCircle(footPosition.position, footRadious, whatIsGround) &&
+            rb2d.velocity.y < 0.1;
         horizontalMovement();
         verticalMovement();
     }
@@ -49,8 +46,7 @@ public class PlayerController1 : MonoBehaviour
         if (isGrounded) {
             if (xMove != 0) {
                 PlayerManager1.instance.changePlayerState(PlayerState.Running);
-            }
-            else if (xMove == 0) {
+            } else if (xMove == 0) {
                 PlayerManager1.instance.changePlayerState(PlayerState.Idle);
             }
 
@@ -63,13 +59,13 @@ public class PlayerController1 : MonoBehaviour
         }
         if (!isGrounded && rb2d.velocity.y >= 0.1) {
             PlayerManager1.instance.changePlayerState(PlayerState.Jump);
-        }else if (!isGrounded && rb2d.velocity.y < -0.1) {
+        } else if (!isGrounded && rb2d.velocity.y < -0.1) {
             PlayerManager1.instance.changePlayerState(PlayerState.JumpFall);
         }
     }
 
     void Update() {
-        if (Input.GetButtonDown("Jump")) { 
+        if (Input.GetButtonDown("Jump")) {
             jump();
         }
     }
@@ -81,14 +77,13 @@ public class PlayerController1 : MonoBehaviour
 
     }
 
-    void flip()
-    {
+    void flip() {
         transform.Rotate(0, 180, 0);
         isFacingRight = !isFacingRight;
     }
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(footPosition.position,footRadious);
+        Gizmos.DrawSphere(footPosition.position, footRadious);
     }
 }

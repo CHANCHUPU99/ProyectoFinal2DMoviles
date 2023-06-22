@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 53ec3880c4c635149b21568d8b84aaf8
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/LevelOne.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/LevelTwo.unity
@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelThree.unity
     guid: 77c8cd1ccf40f9a45a147c7abd70d303
+  - enabled: 1
+    path: Assets/Scenes/YouLoseScene.unity
+    guid: 0fa0d2ee6a23444469b21f186509de2a
+  - enabled: 1
+    path: Assets/Scenes/LevelCompleteScene.unity
+    guid: ee825fa3fade3634fa7053c9017ced6b
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: eaa8d979976be3747a2b835adcf2e080
   m_configObjects: {}

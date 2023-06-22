@@ -1,34 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using Cinemachine;
 
-public class LevelManager : MonoBehaviour
-{
+public class LevelManager : MonoBehaviour {
     public static LevelManager instance;
-    public bool isLevelOneComp;
-    public bool isLevelTwoComp;
-    public bool isLevelThreeComp;
-    private string sceneNameLvlOne = "SampleScene";
+    private string sceneNameLvlOne = "LevelOne";
     private string sceneNameLvlTwo = "LevelTwo";
-    private string sceneNameLvlThree = "LevelThree";
-
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private CinemachineVirtualCamera cmVirtualCamera;
     private void Awake() {
+        GameManager.s_instance.changeGameState(GameState.Playing);
         instance = this;
+        if(FindObjectOfType<PlayerManager1>() == null) {     
+            Instantiate(playerPrefab);
+        }
+            GameManager.s_instance.setNewCurrentLevelName(sceneNameLvlOne);
+            PlayerManager1.instance.changePlayerState(PlayerState.Idle);
+            GameManager.s_instance.setPlayerSpawn();
+        cmVirtualCamera.Follow = PlayerController2.instance.transform;
     }
-    
+
     public void playerisDead() {
         GameManager.s_instance.changeGameState(GameState.GameOver);
     }
     public void levelOneComplete() {
-            GameManager.s_instance.changeGameState(GameState.LoadLevel);
-            GameManager.s_instance.newLevelName(sceneNameLvlTwo);
-    }
-    public void levelTwoComplete() {
-        GameManager.s_instance.changeGameState(GameState.LoadLevel);
-        GameManager.s_instance.newLevelName(sceneNameLvlThree);
-    }
-    public void levelThreeComplete() {
-        GameManager.s_instance.newLevelName(sceneNameLvlThree);
+        GameManager.s_instance.setNewCurrentLevelName(sceneNameLvlTwo);
+        GameManager.s_instance.changeGameState(GameState.LevelComplete);
     }
 }
 
