@@ -44,7 +44,7 @@ public class DeadZoneBehaviour : MonoBehaviour {
     [SerializeField] private GameObject enemy;
     private int enemiesLimit = 9;
     private bool m_canInstantiate = true;
-    private float timeToSpawn = 1f;
+    private float timeToSpawn = 0.1f;
 
     private void Awake() {
 
