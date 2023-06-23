@@ -203,19 +203,19 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
   m_ZDamping: 1
   m_TargetMovementOnly: 1
-  m_ScreenX: 0.41
-  m_ScreenY: 0.49
-  m_CameraDistance: 15.31
-  m_DeadZoneWidth: 0.54
-  m_DeadZoneHeight: 0.76
+  m_ScreenX: 0.509
+  m_ScreenY: 0.505
+  m_CameraDistance: 25
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0.726
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.58
-  m_SoftZoneHeight: 1.06
+  m_SoftZoneWidth: 0.133
+  m_SoftZoneHeight: 0.877
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -75212,7 +75212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732463504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.032782465, y: 0.01917, z: -15.31}
+  m_LocalPosition: {x: 0.022416085, y: 0.01919, z: -15.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
