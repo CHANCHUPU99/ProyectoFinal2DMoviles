@@ -104,7 +104,9 @@ public class GameManager : MonoBehaviour {
         creditsPanel.SetActive(true);
     }
     public void setPlayerSpawn() {
-        PlayerManager1.instance.transform.position = playerSpawnPoint.transform.position;
+        if(PlayerManager1.instance != null) {
+            PlayerManager1.instance.transform.position = playerSpawnPoint.transform.position;
+        }
     }
     //lo que ya tenia 
     //public IEnumerator LoadImage()
